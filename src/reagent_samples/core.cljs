@@ -7,6 +7,8 @@
             [reitit.core :as r])
   (:import goog.history.Html5History))
 
+(enable-console-print!)
+
 (defn multiply [a b] (* a b))
 
 (defn get-app-element []
@@ -35,7 +37,7 @@
                      (reset! path (.-token event))))
     (.setEnabled true)))
 
-(defn- render-page [el]
+(defn- render-page [el new-path]
   (when-let [{:keys [result]} (r/match-by-path router new-path)]
     (result el)))
 
@@ -45,11 +47,11 @@
                (let []
                  (fn [_ _ old-path new-path]
                    (when (not= old-path new-path)
-                     (render-page el)))))
+                     (render-page el new-path)))))
     (hook-browser-navigation!)
     (reset! path js/location.hash)))
 
 (main)
 
 (defn ^:after-load on-reload []
-  (render-page (get-app-element)))
+  (render-page (get-app-element) js/location.hash))
