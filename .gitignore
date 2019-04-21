@@ -1,0 +1,29 @@
+# Project
+pom.xml
+*jar
+/lib/
+/classes/
+/out/
+/target/
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+.repl
+.nrepl-port
+.cpcache/
+.rebel_readline_history
+
+# Intellij
+## User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+## Generated files
+.idea/**/contentModel.xml
+## Cursive Clojure plugin
+.idea/replstate.xml
+
+# Compiled files
+resources/public/js/
