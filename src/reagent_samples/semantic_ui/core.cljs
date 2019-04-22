@@ -1,5 +1,5 @@
 (ns reagent-samples.semantic-ui.core
-  (:require [cljsjs.semantic-ui-react :as sui]
+  (:require [cljsjs.semantic-ui-react]
             [goog.object :as go]
             [goog.dom :as gd]
             [goog.dom.TagName :as tag]
@@ -11,7 +11,7 @@
 (defn- ->c [c & more]
   (->> (cons c more)
        (keep name)
-       (apply go/getValueByKeys sui)
+       (apply go/getValueByKeys js/semanticUIReact)
        reagent/adapt-react-class))
 
 (def container (->c :Container))
@@ -142,29 +142,31 @@
 ;; Component using syntax sugar
 
 (defn- components-using-shortern-syntax []
-  [:> sui/Container {:style {:margin-top "5em"}}
-   [:> sui/Header {:as "h1"}
-    "Show components using " [:code "[:> ... ]"] " syntac"]
-   [:> sui/Segment {:placeholder true}
-    [:> sui/Header {:icon true}
-     [:> sui/Icon {:name "search"}]
-     "We don't have any documents matching your query."]
-    [:> sui/Segment.Inline
-     [:> sui/Button {:primary true} "Color Query"]
-     [:> sui/Button "Add document"]]]
-   [:> sui/Segment
-    [:> sui/Step.Group {:ordered true}
-     [:> sui/Step {:completed true}
-      [:> sui/Step.Content
-       [:> sui/Step.Title "Shipping"]
-       [:> sui/Step.Description "Choose your shipping options"]]]
-     [:> sui/Step {:completed true}
-      [:> sui/Step.Content
-       [:> sui/Step.Title "Billing"]
-       [:> sui/Step.Description "Enter billing information"]]]
-     [:> sui/Step {:active true}
-      [:> sui/Step.Content
-       [:> sui/Step.Title "Confirm Order"]]]]]])
+  (let [->c (fn [s & more]
+              (apply go/getValueByKeys js/semanticUIReact (cons s more)))]
+    [:> (->c "Container") {:style {:margin-top "5em"}}
+     [:> (->c "Header") {:as "h1"}
+      "Show components using " [:code "[:> ... ]"] " syntac"]
+     [:> (->c "Segment") {:placeholder true}
+      [:> (->c "Header") {:icon true}
+       [:> (->c "Icon") {:name "search"}]
+       "We don't have any documents matching your query."]
+      [:> (->c "Segment" "Inline")
+       [:> (->c "Button") {:primary true} "Color Query"]
+       [:> (->c "Button") "Add document"]]]
+     [:> (->c "Segment")
+        [:> (->c "Step" "Group") {:ordered true}
+         [:> (->c "Step") {:completed true}
+          [:> (->c "Step" "Content")
+           [:> (->c "Step" "Title") "Shipping"]
+           [:> (->c "Step" "Description") "Choose your shipping options"]]]
+         [:> (->c "Step") {:completed true}
+          [:> (->c "Step" "Content")
+           [:> (->c "Step" "Title") "Billing"]
+           [:> (->c "Step" "Description") "Enter billing information"]]]
+         [:> (->c "Step") {:active true}
+          [:> (->c "Step" "Content")
+           [:> (->c "Step" "Title") "Confirm Order"]]]]]]))
 
 (defn- back-link []
   [container {:style {:margin-top "2em"}}
