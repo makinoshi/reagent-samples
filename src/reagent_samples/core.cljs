@@ -5,6 +5,8 @@
             [reagent.core :as reagent :refer [atom]]
             [reagent-samples.semantic-ui.core :as semantic-ui]
             [reagent-samples.material-ui.core :as material-ui]
+            [reagent-samples.sortable-hoc.core :as sortable-hoc]
+            [reagent-samples.util :as util]
             [reitit.core :as r])
   (:import goog.history.Html5History))
 
@@ -20,15 +22,18 @@
    [:h1 "Defined UI lists"]
    [:ul
     [:li [:a {:href "#/semantic-ui"} "Semantic UI"]]
-    [:li [:a {:href "#/material-ui"} "Material UI"]]]])
+    [:li [:a {:href "#/material-ui"} "Material UI"]]
+    [:li [:a {:href "#/react-sortable-hoc"} "React Sortable HOC"]]]])
 
 (defn index [el]
+  (util/remove-css)
   (reagent/render-component [main-component] el))
 
 (def router
   (r/router [["" index]
              ["/semantic-ui" semantic-ui/index]
-             ["/material-ui" material-ui/index]]))
+             ["/material-ui" material-ui/index]
+             ["/react-sortable-hoc" sortable-hoc/index]]))
 
 (defonce path (atom nil))
 

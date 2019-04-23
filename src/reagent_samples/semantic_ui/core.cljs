@@ -1,8 +1,6 @@
 (ns reagent-samples.semantic-ui.core
   (:require [cljsjs.semantic-ui-react]
             [goog.object :as go]
-            [goog.dom :as gd]
-            [goog.dom.TagName :as tag]
             [reagent.core :as reagent]
             [reagent-samples.util :as util])
   (:refer-clojure :exclude [list]))

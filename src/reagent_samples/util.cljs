@@ -11,13 +11,17 @@
        (apply go/getValueByKeys js-obj)
        reagent/adapt-react-class))
 
-(defn append-css [css-path & paths]
+(defn remove-css []
   (let [head (.querySelector js/document "head")
         inserted-css (gd/findNodes head (fn [node]
                                           (and (= (go/get node "tagName") "LINK")
                                                (= (go/get node "className") "inserted-css"))))]
     (doseq [node (array-seq inserted-css)]
-      (gd/removeNode node))
+      (gd/removeNode node))))
+
+(defn append-css [css-path & paths]
+  (remove-css)
+  (let [head (.querySelector js/document "head")]
     (doseq [path (cons css-path paths)
             :let [css (gd/createDom tag/LINK #js {:rel "stylesheet"
                                                   :class "inserted-css"

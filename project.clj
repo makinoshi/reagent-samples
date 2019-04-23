@@ -13,7 +13,8 @@
 
                  [cljsjs/semantic-ui-react "0.84.0-0"]
                  [cljsjs/material-ui "3.9.1-0"]
-                 [cljsjs/material-ui-icons "3.0.1-0"]]
+                 [cljsjs/material-ui-icons "3.0.1-0"]
+                 [cljsjs/react-sortable-hoc "0.8.2-0"]]
 
   :source-paths ["src"]
 
