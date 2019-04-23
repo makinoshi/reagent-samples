@@ -3,16 +3,14 @@
             [goog.object :as go]
             [goog.dom :as gd]
             [goog.dom.TagName :as tag]
-            [reagent.core :as reagent])
+            [reagent.core :as reagent]
+            [reagent-samples.util :as util])
   (:refer-clojure :exclude [list]))
 
 ;; Semantic UI Reagent components
 
-(defn- ->c [c & more]
-  (->> (cons c more)
-       (keep name)
-       (apply go/getValueByKeys js/semanticUIReact)
-       reagent/adapt-react-class))
+(def ^:private ->c
+  (partial util/adapt-react-class js/semanticUIReact))
 
 (def container (->c :Container))
 
@@ -181,18 +179,6 @@
    [components-using-shortern-syntax]
    [back-link]])
 
-(defn- append-css []
-  (let [head (.querySelector js/document "head")
-        css (gd/createDom tag/LINK #js {:rel "stylesheet"
-                                        :class "inserted-css"
-                                        :href "//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"})
-        inserted-css (gd/findNodes head (fn [node]
-                                          (and (= (go/get node "tagName") "LINK")
-                                               (= (go/get node "className") "inserted-css"))))]
-    (doseq [node (array-seq inserted-css)]
-      (gd/removeNode node))
-    (gd/appendChild head css)))
-
 (defn index [el]
-  (append-css)
+  (util/append-css "//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css")
   (reagent/render [main] el))

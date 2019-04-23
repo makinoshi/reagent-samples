@@ -4,6 +4,7 @@
             [goog.history.EventType :as EventType]
             [reagent.core :as reagent :refer [atom]]
             [reagent-samples.semantic-ui.core :as semantic-ui]
+            [reagent-samples.material-ui.core :as material-ui]
             [reitit.core :as r])
   (:import goog.history.Html5History))
 
@@ -18,14 +19,16 @@
   [:div
    [:h1 "Defined UI lists"]
    [:ul
-    [:li [:a {:href "#/semantic-ui"} "semantic ui"]]]])
+    [:li [:a {:href "#/semantic-ui"} "Semantic UI"]]
+    [:li [:a {:href "#/material-ui"} "Material UI"]]]])
 
 (defn index [el]
   (reagent/render-component [main-component] el))
 
 (def router
   (r/router [["" index]
-             ["/semantic-ui" semantic-ui/index]]))
+             ["/semantic-ui" semantic-ui/index]
+             ["/material-ui" material-ui/index]]))
 
 (defonce path (atom nil))
 

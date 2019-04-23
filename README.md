@@ -8,6 +8,7 @@ This repository includes following functions and UI component samples.
 
 - Client side routing using [reitit](https://github.com/metosin/reitit)
 - Semantic UI binding samples
+- Material-UI binding samples
 
 ...TODO more
 
