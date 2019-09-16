@@ -2,7 +2,7 @@
   (:require [figwheel.main.api :as fig]))
 
 (defn fig-start []
-  (fig/start {:mode :serve} "dev"))
+  (fig/start "dev"))
 
 (defn fig-stop []
   (fig/stop "dev"))

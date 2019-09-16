@@ -10,8 +10,6 @@
             [reitit.core :as r])
   (:import goog.history.Html5History))
 
-(enable-console-print!)
-
 (defn multiply [a b] (* a b))
 
 (defn get-app-element []

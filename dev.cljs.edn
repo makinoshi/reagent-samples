@@ -1,6 +1,11 @@
-^{:watch-dirs ["test" "src"]
+^{:watch-dirs ["src" "test"]
   :css-dirs ["resources/public/css"]
-  :auto-testing true}
+  :mode :serve}
 {:main reagent-samples.core
- :output-to "resources/public/js/main.js"
- :output-dir "resources/public/js/out"}
+ :optimizations :advanced
+ :pseudo-names true
+ :warnings true
+ :output-wrapper true
+ :source-map false
+ :output-dir "target/cljs/public/js/out"
+ :output-to "target/cljs/public/js/main.js"}

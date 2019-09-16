@@ -2,7 +2,10 @@
   (:require [cljsjs.semantic-ui-react]
             [goog.object :as go]
             [reagent.core :as reagent]
-            [reagent-samples.util :as util])
+            [reagent-samples.util :as util]
+   ;; It cannot use because it does not work with advanced compilation
+            #_[semantic-reagent.core :as sui]
+            )
   (:refer-clojure :exclude [list]))
 
 ;; Semantic UI Reagent components
@@ -70,6 +73,7 @@
 
 (defn- components-using-adapt-react-class []
   [container
+   #_[sui/Header {:as "h1"} "From semantic-reagent.core"]
    [header {:as "h1"} "Show components using reagent.core/adapt-react-class"]
    [grid {:columns 3 :divided true}
     [grid-row
