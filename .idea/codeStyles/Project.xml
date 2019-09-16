@@ -1,0 +1,7 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <ClojureCodeStyleSettings>{
+  :defhandler :only-indent
+}</ClojureCodeStyleSettings>
+  </code_scheme>
+</component>
